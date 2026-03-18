@@ -116,7 +116,7 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
 
                     DeactivateLooping();
                 }
-            ));
+            ), "CYBERGRIND");
         }
 
         private void DeactivateLooping()
@@ -150,12 +150,13 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
             }
 
             Looping = true;
+            
             LoadLayouts();
         }
 
         private void LoadLayouts()
         {
-            DestroyLoop();
+            //DestroyLoop();
             Layouts.Clear();
             Layouts.Add(new VerticalLoop());
             Layouts.Add(new VerticalPongLoop());
