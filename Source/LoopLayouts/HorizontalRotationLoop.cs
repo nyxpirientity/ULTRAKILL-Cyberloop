@@ -18,8 +18,10 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
 
         public override void Generate()
         {
-            var portalA = CreatePortalAcrossAxis(ArenaInfo.Center + Vector3.up * 200, (ArenaInfo.Width + 0.0001f), Vector3.forward, 80.0f, 500.0f, 1, true);
-            var portalB = CreatePortalAcrossAxis(ArenaInfo.Center + Vector3.up * 200, (ArenaInfo.Width + 0.0001f), Vector3.right, 80.0f, 500.0f, 1, true);
+            var portalA = CreatePortalAcrossAxis(ArenaInfo.Center + Vector3.up * 200, (ArenaInfo.Width + Cyberloop.SmallGapSize), Vector3.forward, 80.0f, 500.0f, (int)(1 * Options.PortalMaxRecursionScalar.Value), true);
+            var portalB = CreatePortalAcrossAxis(ArenaInfo.Center + Vector3.up * 200, (ArenaInfo.Width + Cyberloop.SmallGapSize), Vector3.right, 80.0f, 500.0f, (int)(1 * Options.PortalMaxRecursionScalar.Value), true);
+            portalA.supportInfiniteRecursion = Options.PortalPreferSupportInfiniteRecursion.Value;
+            portalB.supportInfiniteRecursion = Options.PortalPreferSupportInfiniteRecursion.Value;
             var rotationA = portalA.exit.rotation;
             var positionA = portalA.exit.position;
             var rotationB = portalB.exit.rotation;

@@ -9,6 +9,9 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
 {
     public static class Options
     {
+        public static ConfigEntry<float> PortalMaxRecursionScalar { get; private set; } = null;
+        public static ConfigEntry<bool> PortalPreferSupportInfiniteRecursion { get; private set; } = null;
+
         internal static void Initialize(BaseUnityPlugin plugin)
         {
             Assert.IsNotNull(plugin);
@@ -19,7 +22,8 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
             _configFileManager.Initialize(_config);
             _configFileManager.OnReload += Reload;
 
-            // then I can place any like, bind functions or whatever here c:
+            PortalMaxRecursionScalar = _config.Bind("Performance", "PortalMaxRecursionScalar", 1.0f);
+            PortalPreferSupportInfiniteRecursion = _config.Bind("Performance", "PortalPreferSupportInfiniteRecursion", false);
         }
 
         private static void Reload()

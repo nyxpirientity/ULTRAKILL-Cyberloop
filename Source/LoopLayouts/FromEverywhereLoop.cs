@@ -19,9 +19,15 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
         public override void Generate()
         {
             var portalSize = 150.0f;
-            var portalA = CreatePortalAcrossAxis(ArenaInfo.Center, portalSize * 0.5f, Vector3.forward, portalSize, portalSize, 1, true);
-            var portalB = CreatePortalAcrossAxis(ArenaInfo.Center, portalSize * 0.5f, Vector3.right, portalSize, portalSize, 1, true);
-            var portalC = CreatePortalAcrossAxis(ArenaInfo.Center, portalSize * 0.5f, Vector3.up, portalSize, portalSize, 1, true);
+
+            var portalA = CreatePortalAcrossAxis(ArenaInfo.Center, portalSize * 0.5f, Vector3.forward, portalSize, portalSize, (int)(1 * Options.PortalMaxRecursionScalar.Value), true);
+            var portalB = CreatePortalAcrossAxis(ArenaInfo.Center, portalSize * 0.5f, Vector3.right, portalSize, portalSize, (int)(1 * Options.PortalMaxRecursionScalar.Value), true);
+            var portalC = CreatePortalAcrossAxis(ArenaInfo.Center, portalSize * 0.5f, Vector3.up, portalSize, portalSize, (int)(1 * Options.PortalMaxRecursionScalar.Value), true);
+            
+            portalA.supportInfiniteRecursion = Options.PortalPreferSupportInfiniteRecursion.Value;
+            portalB.supportInfiniteRecursion = Options.PortalPreferSupportInfiniteRecursion.Value;
+            portalC.supportInfiniteRecursion = Options.PortalPreferSupportInfiniteRecursion.Value;
+
             CreateFallDeathSafetyPortals(500.0f, false);
 
             var rotationA = portalA.exit.rotation;

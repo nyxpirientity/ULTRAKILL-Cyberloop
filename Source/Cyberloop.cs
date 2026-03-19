@@ -22,6 +22,8 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
     [BepInProcess("ULTRAKILL.exe")]
     public class Cyberloop : BaseUnityPlugin
     {
+        internal static float SmallGapSize = 0.001f;
+
         protected void Awake()
         {
             Log.Initialize(Logger);
@@ -163,7 +165,7 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
             Layouts.Add(new HorizontalLoop());
             Layouts.Add(new HorizontalPongLoop());
             Layouts.Add(new HorizontalRotationLoop());
-            Layouts.Add(new FromEverywhereLoop());
+            //Layouts.Add(new FromEverywhereLoop());
             //Layouts.Add(new CrossingThoseManyIslandsLoop());
             Layouts.Add(new CrossingThoseIslandsLoop());
             Layouts.Shuffle();

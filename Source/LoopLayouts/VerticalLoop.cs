@@ -17,7 +17,7 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
 
         public override void Generate()
         {
-            float spacing = 170.0f;
+            float spacing = 260.0f;
             CreateFallDeathSafetyPortals(spacing);
         }
 

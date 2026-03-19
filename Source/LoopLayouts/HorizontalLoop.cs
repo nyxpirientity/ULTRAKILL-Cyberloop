@@ -18,8 +18,10 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
 
         public override void Generate()
         {
-            CreatePortalAcrossAxis(ArenaInfo.Center + Vector3.up * 200, (ArenaInfo.Width + 0.0001f), Vector3.forward, 80.0f, 500.0f, 1, false);
-            CreatePortalAcrossAxis(ArenaInfo.Center + Vector3.up * 200, (ArenaInfo.Width + 0.0001f), Vector3.right, 80.0f, 500.0f, 1, false);
+            var portalA = CreatePortalAcrossAxis(ArenaInfo.Center + Vector3.up * 200, (ArenaInfo.Width + Cyberloop.SmallGapSize), Vector3.forward, 80.0f, 500.0f, (int)(1 * Options.PortalMaxRecursionScalar.Value), false);
+            var portalB = CreatePortalAcrossAxis(ArenaInfo.Center + Vector3.up * 200, (ArenaInfo.Width + Cyberloop.SmallGapSize), Vector3.right, 80.0f, 500.0f, (int)(1 * Options.PortalMaxRecursionScalar.Value), false);
+            portalA.supportInfiniteRecursion = Options.PortalPreferSupportInfiniteRecursion.Value;
+            portalB.supportInfiniteRecursion = Options.PortalPreferSupportInfiniteRecursion.Value;
         }
 
         protected override void OnClear()
