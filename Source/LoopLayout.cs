@@ -23,6 +23,11 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
 
             foreach (var portal in Portals)
             {
+                if (portal == null || portal.gameObject == null)
+                {
+                    continue;
+                }
+                
                 UnityEngine.Object.Destroy(portal.gameObject);
             }
 

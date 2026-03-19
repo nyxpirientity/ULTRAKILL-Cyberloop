@@ -18,7 +18,7 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
         public const string Cyberloop = "nyxpiri.cyber-loop";
     }
 
-    [BepInPlugin("nyxpiri.ultrakill.cyber-loop", "Cyberloop", "0.0.0.1")]
+    [BepInPlugin("nyxpiri.ultrakill.cyber-loop", "Cyberloop", "0.0.0.0")]
     [BepInDependency("nyxpiri.ultrakill.nyxlib", BepInDependency.DependencyFlags.HardDependency)]
     [BepInProcess("ULTRAKILL.exe")]
     public class Cyberloop : BaseUnityPlugin
@@ -52,6 +52,12 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
 
         private void NextLoop()
         {
+            if (!IsCheatActive)
+            {
+                DestroyLoop();
+                return;
+            }
+
             if (Layouts.Count == 0)
             {
                 DestroyLoop();
@@ -161,14 +167,47 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
         {
             //DestroyLoop();
             Layouts.Clear();
-            Layouts.Add(new VerticalLoop());
-            Layouts.Add(new VerticalPongLoop());
-            Layouts.Add(new HorizontalLoop());
-            Layouts.Add(new HorizontalPongLoop());
-            Layouts.Add(new HorizontalRotationLoop());
-            //Layouts.Add(new FromEverywhereLoop());
-            //Layouts.Add(new CrossingThoseManyIslandsLoop());
-            Layouts.Add(new CrossingThoseIslandsLoop());
+            
+            if (Options.UseVerticalLoop.Value)
+            {
+                Layouts.Add(new VerticalLoop());
+            }
+            
+            if (Options.UseVerticalPongLoop.Value)
+            {
+                Layouts.Add(new VerticalPongLoop());
+            }
+
+            if (Options.UseHorizontalLoop.Value)
+            {
+                Layouts.Add(new HorizontalLoop());
+            }
+
+            if (Options.UseHorizontalPongLoop.Value)
+            {
+                Layouts.Add(new HorizontalPongLoop());
+            }
+
+            if (Options.UseHorizontalRotationLoop.Value)
+            {
+                Layouts.Add(new HorizontalRotationLoop());
+            }
+
+            if (Options.UseFromEverywhereLoop.Value)
+            {
+                Layouts.Add(new FromEverywhereLoop());
+            }
+            
+            if (Options.UseCrossingThoseManyIslandsLoop.Value)
+            {
+                Layouts.Add(new CrossingThoseManyIslandsLoop());
+            }
+
+            if (Options.UseCrossingThoseIslandsLoop.Value)
+            {
+                Layouts.Add(new CrossingThoseIslandsLoop());
+            }
+
             Layouts.Shuffle();
         }
 
@@ -237,5 +276,6 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
         private int _currentLoop = -1;
 
         public bool Looping { get; private set; } = false;
+        public bool IsCheatActive { get => NyxLib.Cheats.IsCheatEnabled(Cheats.Cyberloop); }
     }
 }
