@@ -36,7 +36,7 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
 
         protected Portal CreatePortalAcrossAxis(Vector3 center, float dist, Vector3 axis, float width, float height, int maxRecursions, bool canSeeItself)
         {
-            var portalGo = UnityEngine.Object.Instantiate(Cyberloop.InfPortalPrefab);
+            var portalGo = UnityEngine.Object.Instantiate(Assets.InfPortalPrefab);
 
             var entryPosition = center + (axis * dist);
             var entryRotation = Quaternion.LookRotation(axis);
@@ -88,7 +88,7 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
 
         protected Portal CreatePongPortal(Vector3 position, Quaternion rotation, float width, float height, int maxRecursions = 1)
         {
-            var portalGo = UnityEngine.Object.Instantiate(Cyberloop.InfPortalPrefab);
+            var portalGo = UnityEngine.Object.Instantiate(Assets.InfPortalPrefab);
 
             var portal = portalGo.GetComponent<Portal>();
             Portals.Add(portal);

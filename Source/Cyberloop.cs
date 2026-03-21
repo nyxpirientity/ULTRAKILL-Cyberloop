@@ -29,9 +29,12 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
         {
             Log.Initialize(Logger);
             Options.Initialize(this);
+            
             LevelQuickLoader.AddQuickLoadLevel("Level 8-1");
+
             ScenesEvents.OnSceneWasLoaded += OnSceneLoaded;
             NyxLib.Cheats.ReadyForCheatRegistration += RegisterCheats;
+
             Cybergrind.PostCybergrindNextWave += (cancelInfo, endlessGrid) => 
             { 
                 if (cancelInfo.Cancelled) 
@@ -46,6 +49,8 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
                 
                 NextLoop(); 
             };
+
+            Assets.Initialize();
 
             Harmony.CreateAndPatchAll(GetType().Assembly);
         }
@@ -153,7 +158,7 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
                 return;
             }
 
-            if (InfPortalPrefab == null)
+            if (Assets.InfPortalPrefab == null)
             {
                 return;
             }
@@ -216,28 +221,6 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
             CurrentLayout?.Clear();
             CurrentLayout = null;
             Looping = false;
-
-            if (InfPortalPrefab == null)
-            {
-                var portals = UnityEngine.Object.FindObjectsByType<Portal>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-
-                foreach (var portal in portals)
-                {
-                    if (portal.supportInfiniteRecursion && !portal.mirror)
-                    {
-                        InfPortalPrefab = GameObject.Instantiate(portal.gameObject);
-                        InfPortalPrefab.SetActive(false);
-                        GameObject.DontDestroyOnLoad(InfPortalPrefab);
-                        GameObject entry = new GameObject();
-                        entry.transform.parent = InfPortalPrefab.gameObject.transform;
-                        GameObject exit = new GameObject();
-                        exit.transform.parent = InfPortalPrefab.gameObject.transform;
-                        InfPortalPrefab.GetComponent<Portal>().exit = exit.transform;
-                        InfPortalPrefab.GetComponent<Portal>().entry = entry.transform;
-                        break;
-                    }
-                }
-            }
         }
 
         protected void Start()
@@ -269,7 +252,6 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
             }
         }
 
-        internal static GameObject InfPortalPrefab = null;
         LoopLayout PrevLayout = null;
         LoopLayout CurrentLayout = null;
         List<LoopLayout> Layouts = new List<LoopLayout>();
