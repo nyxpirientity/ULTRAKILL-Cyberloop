@@ -1,0 +1,9 @@
+{
+    "name": "Cyberloop",
+    "version_number": "0.0.0",
+    "website_url": "https://github.com/nyxpirientity/ULTRAKILL-Cyberloop",
+    "description": "Adds a cheat that adds various portal layouts to Cybergrind, which get cycled through with each wave.",
+    "dependencies": [ 
+        "Nyxpiri-NyxLib-0.0.0"
+    ]
+}
