@@ -1,3 +1,6 @@
+# Important!
+For this plugin/mod to work, you'll need to ensure your BepInEx is configured to have *`HideManagerGameObject`* set to *`true`*, or else the game will destroy the plugin!
+
 # About
 Cyberloop is a mod/cheat that semi-jankily adds portal layouts to cybergrind, there are about 8 layouts currently, some of which are off by default and can be toggled on in the configuration file. These layouts generally make the cybergrind arena loop, hence the name. 
 
