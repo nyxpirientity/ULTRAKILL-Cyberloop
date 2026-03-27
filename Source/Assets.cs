@@ -14,7 +14,7 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
             ScenesEvents.OnSceneWasLoaded += OnSceneLoaded;
         }
 
-        private static void OnSceneLoaded(Scene scene, string sceneName)
+        private static void OnSceneLoaded(Scene scene, string levelName, string sceneName)
         {
             if (InfPortalPrefab == null)
             {

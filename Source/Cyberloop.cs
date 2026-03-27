@@ -216,7 +216,7 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
             Layouts.Shuffle();
         }
 
-        private void OnSceneLoaded(Scene scene, string sceneName)
+        private void OnSceneLoaded(Scene scene, string levelName, string sceneName)
         {
             CurrentLayout?.Clear();
             CurrentLayout = null;
