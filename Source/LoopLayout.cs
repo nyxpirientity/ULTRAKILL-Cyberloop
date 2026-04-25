@@ -70,7 +70,6 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
             portal.canSeePortalLayer = canSeePortalLayer;
             portal.renderSettings = renderSettings;
             Portals.Add(portal);
-            portal.UpdateTransformData();
             portalGo.SetActive(true);
 
             return portal;
@@ -107,7 +106,6 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
             portal.canSeeItself = false;
             portal.renderSettings = PortalSideFlags.Exit;
             portal.canSeePortalLayer = false;
-            portal.UpdateTransformData();
             portalGo.SetActive(true);
             PongPortals.Add(portal);
             return portal;
