@@ -18,7 +18,7 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
         public const string Cyberloop = "nyxpiri.cyber-loop";
     }
 
-    [BepInPlugin("nyxpiri.ultrakill.cyber-loop", "Cyberloop", "0.0.1")]
+    [BepInPlugin("nyxpiri.ultrakill.cyber-loop", "Cyberloop", "0.0.2")]
     [BepInDependency("nyxpiri.ultrakill.nyxlib", BepInDependency.DependencyFlags.HardDependency)]
     [BepInProcess("ULTRAKILL.exe")]
     public class Cyberloop : BaseUnityPlugin
