@@ -29,9 +29,7 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
         {
             Log.Initialize(Logger);
             Options.Initialize(this);
-            
-            LevelQuickLoader.AddQuickLoadLevel("Level 8-1");
-
+    
             ScenesEvents.OnSceneWasLoaded += OnSceneLoaded;
             NyxLib.Cheats.ReadyForCheatRegistration += RegisterCheats;
 

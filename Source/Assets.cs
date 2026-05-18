@@ -1,5 +1,6 @@
 using Nyxpiri.ULTRAKILL.NyxLib;
 using ULTRAKILL.Portal;
+using ULTRAKILL.Portal.Geometry;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,7 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
 {
     public static class Assets
     {
-        public  static GameObject InfPortalPrefab = null;
+        public static GameObject InfPortalPrefab = null;
         
         internal static void Initialize()
         {
@@ -16,27 +17,17 @@ namespace Nyxpiri.ULTRAKILL.Cyberloop
 
         private static void OnSceneLoaded(Scene scene, string levelName, string sceneName)
         {
-            if (InfPortalPrefab == null)
-            {
-                var portals = UnityEngine.Object.FindObjectsByType<Portal>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-
-                foreach (var portal in portals)
-                {
-                    if (portal.supportInfiniteRecursion && !portal.mirror)
-                    {
-                        InfPortalPrefab = GameObject.Instantiate(portal.gameObject);
-                        InfPortalPrefab.SetActive(false);
-                        GameObject.DontDestroyOnLoad(InfPortalPrefab);
-                        GameObject entry = new GameObject();
-                        entry.transform.parent = InfPortalPrefab.gameObject.transform;
-                        GameObject exit = new GameObject();
-                        exit.transform.parent = InfPortalPrefab.gameObject.transform;
-                        InfPortalPrefab.GetComponent<Portal>().exit = exit.transform;
-                        InfPortalPrefab.GetComponent<Portal>().entry = entry.transform;
-                        break;
-                    }
-                }
-            }
+            InfPortalPrefab = new GameObject();
+            var portal = InfPortalPrefab.AddComponent<Portal>();
+            InfPortalPrefab.SetActive(false);
+            GameObject.DontDestroyOnLoad(InfPortalPrefab);
+            GameObject entry = new GameObject();
+            entry.transform.parent = InfPortalPrefab.gameObject.transform;
+            GameObject exit = new GameObject();
+            exit.transform.parent = InfPortalPrefab.gameObject.transform;
+            portal.exit = exit.transform;
+            portal.entry = entry.transform;
+            portal.shape = new PlaneShape();
         }
     }
 }
